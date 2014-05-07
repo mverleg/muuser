@@ -1,0 +1,17 @@
+
+{% extends BASE_TEMPLATE %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<h1>Already logged in</h1>
+
+<p>This page is normally used to request a new password, but you are already logged in as <strong>{{ request.user.get_username }}</strong>.</p>
+
+<p>If you still remember your password, you can <a href="{% url 'profile_password' %}">change it</a>. Otherwise, <a href="{% url 'logout' %}">log out</a> to reset it.</p>
+
+{% endblock %}
+
+
