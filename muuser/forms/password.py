@@ -7,17 +7,17 @@ from django import forms
 
 
 '''
-    registration form, inspired by http://stackoverflow.com/questions/16562529/django-1-5-usercreationform-custom-auth-model
+	registration form, inspired by http://stackoverflow.com/questions/16562529/django-1-5-usercreationform-custom-auth-model
 '''
 class PasswordForm(PasswordChangeForm):
-    
-    def __init__(self, *args, **kwargs):
-        self.helper = FormHelper()
-        self.helper.form_action = 'profile_password'
-        self.helper.add_input(Submit('submit', 'Change'))
-        super(PasswordForm, self).__init__(*args, **kwargs)
+	
+	def __init__(self, *args, **kwargs):
+		self.helper = FormHelper()
+		self.helper.form_action = 'profile_password'
+		self.helper.add_input(Submit('submit', 'Change'))
+		super(PasswordForm, self).__init__(*args, **kwargs)
 
 '''
-    see also the ResetPasswordForm in forms.reset
+	see also the ResetPasswordForm in forms.reset
 '''
 
