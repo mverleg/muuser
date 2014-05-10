@@ -1,8 +1,8 @@
 
 '''
-    load all the modules in the subdirectories,
-    then do nothing with them, just so that they
-    will register themselves with admin
+	load all the modules in the subdirectories,
+	then do nothing with them, just so that they
+	will register themselves with admin
 '''
 
 from split_models import check_files

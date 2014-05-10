@@ -6,7 +6,7 @@ from django.db import models
 '''
 	a manager that doesn't use username when creating users
 '''
-class Mu3UserManager(UserManager):
+class MuUserManager(UserManager):
 	
 	def _create_user(self, email, password, is_staff, is_superuser, **extra_fields):
 		email = self.normalize_email(email)
@@ -25,7 +25,7 @@ class Mu3UserManager(UserManager):
 '''
 	custom user model
 '''
-class Mu3UserAbstract(AbstractBaseUser, PermissionsMixin):
+class MuUserAbstract(AbstractBaseUser, PermissionsMixin):
 	
 	''' personal fields (password is in base user) '''
 	email = models.EmailField(blank = True, unique = True, help_text = 'Email address; also used as login name.')
@@ -35,14 +35,14 @@ class Mu3UserAbstract(AbstractBaseUser, PermissionsMixin):
 	''' permissions and tracking '''
 	is_staff = models.BooleanField(default = False, help_text = 'Designates whether the user can log into this admin site.')
 	
-	objects = Mu3UserManager()
+	objects = MuUserManager()
 	
 	USERNAME_FIELD = 'email'
 	REQUIRED_FIELDS = []
 	
 	class Meta:
 		abstract = True
-		app_label = 'mu3_user'
+		app_label = 'muuser'
 		verbose_name = 'user'
 		verbose_name_plural = 'users'
 	
@@ -53,19 +53,19 @@ class Mu3UserAbstract(AbstractBaseUser, PermissionsMixin):
 		return self.email.split('@')[0].replace('_', ' ').replace('-', ' ').replace('.', ' ').replace('  ', ' ').title()
 	
 	def get_short_name(self):
-		name = ('%s %s' % (self.first_name, self.last_name)).strip()
+		name = self.first_name.strip()
 		if not name:
 			return self.email_name()
 		return name
 	
 	def get_full_name(self):
-		name = self.first_name.strip()
+		name = ('%s %s' % (self.first_name, self.last_name)).strip()
 		if not name:
 			return self.email_name()
 		return name
 
 
-class Mu3User(Mu3UserAbstract):
+class MuUser(MuUserAbstract):
 	pass
 
 

@@ -2,7 +2,7 @@
 Django Mu3 User
 -----------
 
-Django custom user that uses email as login name. Not directly usable, because it relies on mu3 and admin_settings, but available for adaptation or inspiration.
+Django custom user that uses email as login name. Not directly usable, because it relies on mu3, admin_settings and crispy_forms, but available for adaptation or inspiration.
 
 Future development
 -----------

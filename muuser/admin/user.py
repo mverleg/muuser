@@ -7,10 +7,10 @@ from django.forms.widgets import PasswordInput
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.contrib.auth.admin import UserAdmin
-from mu3_user.models.user import Mu3User
+from muuser.models.user import MuUser
 
 
-class Mu3UserChangeForm(ModelForm):
+class MuUserChangeForm(ModelForm):
     
     email = EmailField(help_text = 'Required. Email address; also login name.')
     password = ReadOnlyPasswordHashField(help_text = 'Raw passwords are not stored, so there is no way to see this user\'s password, but you can change the password using <a href=\'password/\'>this form</a>.')
@@ -20,7 +20,7 @@ class Mu3UserChangeForm(ModelForm):
         fields = '__all__'
     
     def __init__(self, *args, **kwargs):
-        super(Mu3UserChangeForm, self).__init__(*args, **kwargs)
+        super(MuUserChangeForm, self).__init__(*args, **kwargs)
         f = self.fields.get('user_permissions', None)
         if f is not None:
             f.queryset = f.queryset.select_related('content_type')
@@ -31,7 +31,7 @@ class Mu3UserChangeForm(ModelForm):
         return self.initial['password']
 
 
-class Mu3UserCreationForm(ModelForm):
+class MuUserCreationForm(ModelForm):
     error_messages = {
         'duplicate_username': 'A user with that username already exists.',
         'password_mismatch': 'The two password fields didn\'t match.',
@@ -52,21 +52,21 @@ class Mu3UserCreationForm(ModelForm):
         return password2
     
     def save(self, commit = True):
-        user = super(Mu3UserCreationForm, self).save(commit = False)
+        user = super(MuUserCreationForm, self).save(commit = False)
         user.set_password(self.cleaned_data['password1'])
         if commit:
             user.save()
         return user
 
 
-class Mu3UserAdmin(UserAdmin):
+class MuUserAdmin(UserAdmin):
     
-    fieldsets = (
-        ('Login', {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('first_name', 'last_name')}),
-        ('Permissions', {'fields': ('is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+    fieldsets = [
+        ['Login', {'fields': ['email', 'password']}],
+        ['Personal info', {'fields': ['first_name', 'last_name']}],
+        ['Permissions', {'fields': ['is_staff', 'is_superuser', 'groups', 'user_permissions']}],
         #('Important dates', {'fields': ('last_login', 'date_joined')}),
-    )
+    ]
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
@@ -78,14 +78,14 @@ class Mu3UserAdmin(UserAdmin):
     list_display = ('get_full_name', 'email', 'first_name', 'last_name', 'is_staff')
     list_filter = ('is_staff', 'is_superuser', 'groups')
     
-    form = Mu3UserChangeForm
-    add_form = Mu3UserCreationForm
+    form = MuUserChangeForm
+    add_form = MuUserCreationForm
     change_password_form = AdminPasswordChangeForm
     
     class Meta:
-        model = Mu3User
+		model = MuUser
 
 
-admin.site.register(Mu3User, Mu3UserAdmin)
+#admin.site.register(MuUser, MuUserAdmin)
 
 

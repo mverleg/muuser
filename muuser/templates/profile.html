@@ -4,6 +4,12 @@
 {% load crispy_forms_tags %}
 
 
+{% block title %}
+	Profile
+	{{ TITLE_SEPARATOR }}
+	{{ block.super }}
+{% endblock title %}
+
 {% block content %}
 	
 	<h1>Profile</h1>

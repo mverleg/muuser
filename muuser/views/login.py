@@ -1,8 +1,8 @@
 
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
-from mu3_user.forms.login import LoginForm
-from mu3_user.functions.next_get import next_GET
+from muuser.forms.login import LoginForm
+from muuser.functions.next_get import next_GET
 from django.contrib.auth import login as auth_login
 
 

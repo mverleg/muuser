@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.views import login_required
 from django.views.decorators.http import require_GET, require_POST
-from mu3_user.forms.profile import ProfileForm
-from mu3_user.forms.password import PasswordForm
+from muuser.forms.profile import ProfileForm
+from muuser.forms.password import PasswordForm
 from base.views.notification import notification
 
 
