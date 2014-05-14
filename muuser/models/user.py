@@ -25,7 +25,7 @@ class MuUserManager(UserManager):
 '''
 	custom user model
 '''
-class MuUserAbstract(AbstractBaseUser, PermissionsMixin):
+class MuUser(AbstractBaseUser, PermissionsMixin):
 	
 	''' personal fields (password is in base user) '''
 	email = models.EmailField(blank = True, unique = True, help_text = 'Email address; also used as login name.')
@@ -65,7 +65,7 @@ class MuUserAbstract(AbstractBaseUser, PermissionsMixin):
 		return name
 
 
-class MuUser(MuUserAbstract):
-	pass
+#class MuUser(MuUserAbstract):
+#	pass
 
 

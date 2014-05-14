@@ -27,7 +27,6 @@ class MuUserChangeForm(ModelForm):
     
     def clean_password(self):
         ''' can't be changed directly '''
-        print self.initial
         return self.initial['password']
 
 

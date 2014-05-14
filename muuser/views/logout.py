@@ -2,7 +2,6 @@
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from muuser.forms.logout import LogoutForm
-from base.views.notification import notification
 from django.contrib.auth import logout as auth_logout
 from muuser.functions.next_get import next_GET
 

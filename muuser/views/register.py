@@ -2,7 +2,7 @@
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from base.views.notification import notification
+from mu3.base.views.notification import notification
 from muuser.forms.register import RegistrationForm
 from muuser.functions.next_get import next_GET_or
 

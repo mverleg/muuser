@@ -33,7 +33,6 @@ def send_reset_link(request, user, domain, from_email = None):
 		'user': user,
 		'token': token,
 	}, RequestContext(request))
-	print body
 	send_mail(subject, body, from_email, [user.email])
 
 
