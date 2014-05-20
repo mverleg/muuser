@@ -13,7 +13,7 @@ class ProfileForm(forms.ModelForm):
 	
 	class Meta:
 		model = get_user_model()
-		fields = ('first_name', 'last_name',)
+		fields = get_user_model().PROFILE_FIELDS
 	
 	def __init__(self, *args, **kwargs):
 		self.helper = FormHelper()

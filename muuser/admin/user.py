@@ -12,7 +12,7 @@ from muuser.models.user import MuUser
 
 class MuUserChangeForm(ModelForm):
     
-    email = EmailField(help_text = 'Required. Email address; also login name.')
+    email = EmailField(help_text = 'Required. Email address; also login name.', max_length = 254)
     password = ReadOnlyPasswordHashField(help_text = 'Raw passwords are not stored, so there is no way to see this user\'s password, but you can change the password using <a href=\'password/\'>this form</a>.')
     
     class Meta:
@@ -35,7 +35,7 @@ class MuUserCreationForm(ModelForm):
         'duplicate_username': 'A user with that username already exists.',
         'password_mismatch': 'The two password fields didn\'t match.',
     }
-    email = EmailField(help_text = 'Required. Email address; also login name.')
+    email = EmailField(help_text = 'Required. Email address; also login name.', max_length = 254)
     password1 = CharField(label = 'Password', widget = PasswordInput)
     password2 = CharField(label = 'Password confirmation', widget = PasswordInput, help_text = 'Enter the same password as above, for verification.')
     

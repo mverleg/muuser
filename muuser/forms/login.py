@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate
 
 class LoginForm(forms.Form):
 	
-	email = forms.EmailField()
+	email = forms.EmailField(max_length = 254)
 	password = forms.CharField(widget = forms.PasswordInput)
 	next = forms.CharField(max_length = 128, widget = forms.HiddenInput)
 	

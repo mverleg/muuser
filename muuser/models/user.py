@@ -18,6 +18,11 @@ class MuUserManager(UserManager):
 	def create_user(self, email, password = None, **extra_fields):
 		return self._create_user(email = email, password = password, is_staff = False, is_superuser = False, **extra_fields)
 	
+	def create_nologin_user(self, email, **extra_fields):
+		user = self._create_user(email = email, is_staff = False, is_superuser = False, **extra_fields)
+		user.set_unusable_password()
+		return user
+	
 	def create_superuser(self, email, password, **extra_fields):
 		return self._create_user(email = email, password = password, is_staff = True, is_superuser = True, **extra_fields)
 
@@ -28,7 +33,7 @@ class MuUserManager(UserManager):
 class MuUser(AbstractBaseUser, PermissionsMixin):
 	
 	''' personal fields (password is in base user) '''
-	email = models.EmailField(blank = True, unique = True, help_text = 'Email address; also used as login name.')
+	email = models.EmailField(blank = True, unique = True, max_length = 254, help_text = 'Email address; also used as login name.')
 	first_name = models.CharField(max_length = 30, blank = True)
 	last_name = models.CharField(max_length = 30, blank = True)
 	
@@ -39,6 +44,7 @@ class MuUser(AbstractBaseUser, PermissionsMixin):
 	
 	USERNAME_FIELD = 'email'
 	REQUIRED_FIELDS = []
+	PROFILE_FIELDS = ('first_name', 'last_name',)
 	
 	class Meta:
 		abstract = True

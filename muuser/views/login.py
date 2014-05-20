@@ -6,9 +6,6 @@ from muuser.functions.next_get import next_GET
 from django.contrib.auth import login as auth_login
 
 
-'''
-	wrapper for django login view
-'''
 @next_GET
 def login(request, next, *args, **kwargs):
 	if request.user.is_authenticated():

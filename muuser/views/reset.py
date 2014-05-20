@@ -5,7 +5,7 @@ from muuser.functions.next_get import next_GET, next_GET_or
 from muuser.forms.reset import RequestResetForm, ResetPasswordForm
 from muuser.functions.reset import send_reset_link, reset_token
 from django.contrib.auth import get_user_model, authenticate, login
-from mu3.base.views.notification import notification
+from misc.views.notification import notification
 
 
 '''

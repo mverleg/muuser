@@ -13,7 +13,7 @@ from django import forms
 '''
 class RequestResetForm(forms.Form):
 	
-	email = forms.EmailField()
+	email = forms.EmailField(max_length = 254)
 	#next = forms.CharField(max_length = 128, widget = forms.HiddenInput)
 	
 	def __init__(self, *args, **kwargs):
