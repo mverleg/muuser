@@ -1,0 +1,25 @@
+
+{% extends BASE_TEMPLATE %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+	Login
+	{{ TITLE_SEPARATOR }}
+	{{ block.super }}
+{% endblock title %}
+
+{% block content %}
+	
+	<h1>Email subscribe</h1>
+	
+	<p>By clicking the button below, you can subscribe to emails from this site</p>
+	
+    <form action="{% url 'email_subscribe' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-default btn-primary" value="subscribe"/>
+    </form>
+    
+{% endblock content %}
+
+

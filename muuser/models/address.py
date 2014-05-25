@@ -16,7 +16,7 @@ class BaseAddress(models.Model):
 	def __unicode__(self):
 		return '%s %s, %s, %s' % (self.street_name, self.street_nr, self.city, self.country)
 	
-	def google_address_search_name(self):
+	def full_address(self):
 		if self.postal_code:
 			return '%s %s, %s, %s, %s' % (self.street_name, self.street_nr, self.postal_code, self.city, self.country)
 		else:
@@ -44,9 +44,6 @@ class MuAddress(BaseAddress):
 	street_nr = models.IntegerField(null = True, blank = False)
 	city = models.CharField(max_length = 32, null = True, blank = False)
 	
-	def google_name(self):
-		return self.google_address_search_name()
-				
 	class Meta:
 		app_label = 'account'
 		abstract = True

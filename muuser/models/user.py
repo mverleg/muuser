@@ -1,6 +1,9 @@
 
+from settings import SECRET_KEY
+from django.contrib.auth.hashers import get_hasher
 from django.contrib.auth.models import UserManager, AbstractBaseUser, PermissionsMixin
 from django.db import models
+from re import sub
 
 
 '''
@@ -37,7 +40,8 @@ class MuUser(AbstractBaseUser, PermissionsMixin):
 	first_name = models.CharField(max_length = 30, blank = True)
 	last_name = models.CharField(max_length = 30, blank = True)
 	
-	''' permissions and tracking '''
+	''' permissions '''
+	receive_emails = models.BooleanField(default = True, help_text = 'Turned off when the user clicks an email unsubscribe link')
 	is_staff = models.BooleanField(default = False, help_text = 'Designates whether the user can log into this admin site.')
 	
 	objects = MuUserManager()
@@ -69,7 +73,11 @@ class MuUser(AbstractBaseUser, PermissionsMixin):
 		if not name:
 			return self.email_name()
 		return name
-
+	
+	def email_unsubscribe_token(self):
+		token = get_hasher().encode(self.email, 'unsubscribe')
+		token = sub(r'[^a-zA-Z0-9]+', '', token.split('$')[-1])
+		return token[-12:]
 
 #class MuUser(MuUserAbstract):
 #	pass
