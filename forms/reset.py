@@ -21,6 +21,7 @@ class RequestResetForm(forms.Form):
 		self.helper.form_action = 'password_reset'
 		self.helper.add_input(Submit('submit', 'Request reset'))
 		super(RequestResetForm, self).__init__(*args, **kwargs)
+		self.fields['email'].widget.attrs['placeholder'] = 'email@address.com'
 
 
 '''

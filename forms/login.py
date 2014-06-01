@@ -17,6 +17,7 @@ class LoginForm(forms.Form):
 		self.helper.form_action = 'login'
 		self.helper.add_input(Submit('submit', 'Login'))
 		super(LoginForm, self).__init__(*args, **kwargs)
+		self.fields['email'].widget.attrs['placeholder'] = 'email@address.com'
 	
 	def clean(self):
 		email = self.cleaned_data.get('email')

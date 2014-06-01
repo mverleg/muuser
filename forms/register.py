@@ -52,5 +52,6 @@ class RegistrationForm(forms.ModelForm):
 		self.helper.add_input(Submit('submit', 'Register'))
 		super(RegistrationForm, self).__init__(*args, **kwargs)
 		self.fields['email'].required = True
+		self.fields['email'].widget.attrs['placeholder'] = 'email@address.com'
 
 
