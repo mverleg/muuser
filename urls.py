@@ -8,10 +8,10 @@ from muuser.views.register import register
 from muuser.views.profile import profile
 from muuser.views.reset import reset_request, reset_sent, reset_new, reset_complete
 from muuser.views.subscribe import email_unsubscribe, email_subscribe
-from muuser.views.actions import actions
+from muuser.views.actions import profile_actions
 from muuser.views.settings import settings
 from muuser.views.password import password
-from views.password import password_done
+from muuser.views.password import password_done
 
 
 pattern_list = (
@@ -19,7 +19,7 @@ pattern_list = (
 	url(r'^login/$', login, name = 'login'),
 	url(r'^logout/$', logout, name = 'logout'),
 	url(r'^register/$', register, name = 'register'),
-	url(r'^actions/$', actions, name = 'profile_actions'),
+	url(r'^actions/$', profile_actions, name = 'profile_actions'),
 	url(r'^profile/$', profile, name = 'profile_info'),
 	url(r'^settings/$', settings, name = 'profile_settings'),
 	url(r'^password/$', password, name = 'profile_password'),

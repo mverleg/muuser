@@ -8,7 +8,7 @@ from muuser.forms.logout import LogoutForm
 
 
 @login_required
-def actions(request):
+def profile_actions(request):
 	logout_form = LogoutForm(data = request.POST or None, initial = {'next': reverse('login')})
 	return render(request, 'profile_actions.html', {
 		'logout_form': logout_form,
