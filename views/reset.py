@@ -12,7 +12,7 @@ from misc.views.notification import notification
 	request a password reset email
 '''
 @next_GET
-def reset_request(request, *args, **kwargs):
+def reset_request(request):
 	if request.user.is_authenticated():
 		return render(request, 'reset_logged_in.html', {})
 	form = RequestResetForm(request.POST or None)#, initial = {'next': next})
@@ -31,7 +31,7 @@ def reset_request(request, *args, **kwargs):
 	password reset email has been sent
 '''
 @next_GET_or('login')
-def reset_sent(request, *args, **kwargs):
+def reset_sent(request):
 	if request.user.is_authenticated():
 		return render(request, 'reset_logged_in.html', {})
 	return notification(request, message = '''<p>We've emailed you instructions for setting your password. You should be receiving them shortly.</p>

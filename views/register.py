@@ -11,7 +11,7 @@ from muuser.functions.next_get import next_GET_or
 	wrapper for django login view
 '''
 @next_GET_or('profile')
-def register(request, next, *args, **kwargs):
+def register(request, next):
 	if request.user.is_authenticated():
 		return redirect(to = reverse('logout'))
 	form = RegistrationForm(request.POST or None, initial = {'next': next})

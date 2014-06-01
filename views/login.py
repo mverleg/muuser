@@ -7,7 +7,7 @@ from django.contrib.auth import login as auth_login
 
 
 @next_GET
-def login(request, next, *args, **kwargs):
+def login(request, next):
 	if request.user.is_authenticated():
 		return redirect(to = reverse('logout'))
 	form = LoginForm(data = request.POST or None, initial = {'next': next})
