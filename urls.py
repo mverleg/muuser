@@ -8,9 +8,9 @@ from muuser.views.register import register
 from muuser.views.profile import profile
 from muuser.views.reset import reset_request, reset_sent, reset_new, reset_complete
 from muuser.views.subscribe import email_unsubscribe, email_subscribe
-#from muuser.views.profile_actions import profile_actions
-#from muuser.views.settings import settings
-#from muuser.views.password import password, password_done
+from muuser.views.profile_actions import profile_actions
+from muuser.views.settings import settings
+from muuser.views.password import password, password_done
 
 
 pattern_list = (
