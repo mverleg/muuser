@@ -41,7 +41,7 @@ class MuUser(AbstractBaseUser, PermissionsMixin):
 	last_name = models.CharField(max_length = 30, blank = True)
 	
 	''' permissions '''
-	receive_emails = models.BooleanField(default = True, help_text = 'Turned off when the user clicks an email unsubscribe link')
+	receive_emails = models.BooleanField(default = True, help_text = 'Turn off to receive only essential emails')
 	is_staff = models.BooleanField(default = False, help_text = 'Designates whether the user can log into this admin site.')
 	
 	objects = MuUserManager()
@@ -49,6 +49,7 @@ class MuUser(AbstractBaseUser, PermissionsMixin):
 	USERNAME_FIELD = 'email'
 	REQUIRED_FIELDS = []
 	PROFILE_FIELDS = ('first_name', 'last_name',)
+	SETTINGS_FIELDS = ('receive_emails',)
 	
 	class Meta:
 		abstract = True

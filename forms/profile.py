@@ -1,8 +1,9 @@
 
 from django.contrib.auth import get_user_model
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Submit, Button
 from django import forms
+from django.core.urlresolvers import reverse
 
 
 '''
@@ -17,9 +18,19 @@ class ProfileForm(forms.ModelForm):
 	
 	def __init__(self, *args, **kwargs):
 		self.helper = FormHelper()
-		self.helper.form_action = 'profile_submit'
-		self.helper.add_input(Submit('submit', 'Change'))
+		self.helper.form_action = 'profile_info'
+		self.helper.add_input(Button(None, 'other settings', onclick = 'location.href=\'%s\'' % reverse('profile_actions'), tabindex = -1))
+		self.helper.add_input(Submit('submit', 'change'))
 		super(ProfileForm, self).__init__(*args, **kwargs)
-		#self.fields['email'].required = True
+
+class UserSettingsForm(ProfileForm):
+	
+	class Meta:
+		model = get_user_model()
+		fields = get_user_model().SETTINGS_FIELDS
+	
+	def __init__(self, *args, **kwargs):
+		super(UserSettingsForm, self).__init__(*args, **kwargs)
+		self.helper.form_action = 'profile_settings'
 
 

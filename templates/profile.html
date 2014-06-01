@@ -5,6 +5,10 @@
 
 
 {% block title %}
+    {% if header %}
+        {{ header }}
+        {{ TITLE_SEPARATOR }}
+    {% endif %}
 	Profile
 	{{ TITLE_SEPARATOR }}
 	{{ block.super }}
@@ -12,19 +16,12 @@
 
 {% block content %}
 	
-	<h1>Profile</h1>
+    {% if header %}
+	    <h1>{{ header }}</h1>
+    {% endif %}
 	
-	{% if form_profile %}
-		<h2>Contact</h2>
-		{% crispy form_profile %}
-	{% endif %}
-	
-	{% if form_password %}
-		<h2>Security</h2>
-		{% crispy form_password %}
-	{% endif %}
+    {% crispy form %}
 	
 {% endblock content %}
-
 
 

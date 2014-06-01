@@ -1,0 +1,35 @@
+
+{% extends BASE_TEMPLATE %}
+
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+	Profile
+	{{ TITLE_SEPARATOR }}
+	{{ block.super }}
+{% endblock title %}
+
+{% block content %}
+	
+	<h1>Profile</h1>
+	
+	<p>Please select what you want to change</p>
+    
+	<a href="{% url 'profile_info' %}" class="btn btn-default btn-block"><span class="glyphicon glyphicon-user"></span> Personal info</a>
+	<a href="{% url 'profile_settings' %}" class="btn btn-default btn-block"><span class="glyphicon glyphicon-cog"></span> Preferences</a>
+	<a href="{% url 'profile_password' %}" class="btn btn-default btn-block"><span class="glyphicon glyphicon-lock"></span> Password</a>
+    
+    <p>Or, if you are done, don't forget to logout</p>
+    
+    {% crispy logout_form %}
+    
+	{% comment %}
+		{% crispy profile_form %}
+		{% crispy settings_form %}
+		{% crispy password_form %}
+	{% endcomment %}
+    
+{% endblock content %}
+
+
