@@ -5,7 +5,7 @@ from muuser.forms.logout import LogoutForm
 from django.contrib.auth import logout as auth_logout
 from muuser.functions.next_get import next_GET
 from misc.functions.secure import desecure_redirect
-import settings
+from . import settings
 
 
 '''
