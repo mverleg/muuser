@@ -1,6 +1,7 @@
 
 from django.conf.urls import patterns, url
 from django.core.urlresolvers import reverse
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from muuser.views.login import login
 from muuser.views.logout import logout
@@ -23,7 +24,7 @@ pattern_list = (
 	url(r'^settings/$', settings, name = 'profile_settings'),
 	url(r'^password/$', password, name = 'profile_password'),
 	url(r'^password/done/$', password_done, name = 'profile_password_done'),
-	
+
 	url(r'^reset/$', reset_request, name = 'password_reset'),
 	url(r'^reset/sent/$', reset_sent, name = 'password_reset_sent'),
 	url(r'^reset/new/(?P<uid>[0-9]+)/(?P<token>[a-zA-Z0-9]+)/$', reset_new, name = 'password_reset_new'),
