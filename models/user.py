@@ -6,9 +6,9 @@ from django.db import models
 from re import sub
 
 
-'''
+"""
 	a manager that doesn't use username when creating users
-'''
+"""
 class MuUserManager(UserManager):
 
 	def _create_user(self, email, password, is_staff, is_superuser, **extra_fields):
@@ -30,9 +30,9 @@ class MuUserManager(UserManager):
 		return self._create_user(email = email, password = password, is_staff = True, is_superuser = True, **extra_fields)
 
 
-'''
+"""
 	custom user model
-'''
+"""
 class MuUser(AbstractBaseUser, PermissionsMixin):
 
 	''' personal fields (password is in base user) '''

@@ -16,7 +16,7 @@ ADDRESS_READONLY_FIELDS = ('longitude', 'latitude',)
 	registration in admin should happen in project.account, if applicable
 '''
 class AddressAdmin(ModelAdmin):
-	
+
 	model = MuAddress
 	fields = ADDRESS_FIELDSET
 	readonly_fields = ADDRESS_READONLY_FIELDS
